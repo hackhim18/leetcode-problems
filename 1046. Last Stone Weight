@@ -13,6 +13,7 @@ public:
             first = hp.top();
             hp.pop();
             second = hp.top();
+            
             hp.pop();
             n-=2;
             
