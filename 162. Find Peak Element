@@ -4,6 +4,7 @@ public:
         
          int low = 0;
         int n = arr.size();
+        
    int high = n-1;
    
    while(low<=high){
