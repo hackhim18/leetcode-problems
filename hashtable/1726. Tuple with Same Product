@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int tupleSameProduct(vector<int>& nums) {
+        int n = nums.size();
+        unordered_map<int,int> mp;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=i+1;j<n;j++)
+            {
+                mp[nums[i]*nums[j]]++;
+            }
+        }
+        int res =0;
+        for(auto a:mp)
+        {
+            int x = a.second;
+            int comb = (x*(x-1))/2;
+            res+= 8*comb;
+        }
+        return res;
+    }
+};
