@@ -12,7 +12,6 @@ public:
         }
         return(1);
     }
-    
     int findRadius(vector<int>& house, vector<int>& heaters) 
     {
         sort(heaters.begin(),heaters.end());
