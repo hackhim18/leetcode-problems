@@ -10,7 +10,6 @@ public:
         }
         return true;
     }
-    
     vector<int> selfDividingNumbers(int left, int right) {
         vector<int> res;
         
