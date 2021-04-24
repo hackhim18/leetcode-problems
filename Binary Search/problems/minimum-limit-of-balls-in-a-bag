@@ -1,0 +1,31 @@
+class Solution {
+public:
+        bool check(int n,vector<int>&nums, int o)
+        {
+            for(int i=0;i<nums.size();i++)
+            {
+                o-=(nums[i]/n);
+                if(nums[i]%n==0)o++;
+            }
+            return o>=0;
+        }
+    int minimumSize(vector<int>& nums, int o)
+     { 
+         int s=1,e=INT_MAX;
+         int res=0;
+         while(s<=e)
+         {
+             int n=s+(e-s)/2;
+             if(check(n,nums,o))
+             {
+                 res=n;
+                 e=n-1;
+             }
+             else
+             {
+                 s=n+1;
+             }
+         }
+             return res;
+         }
+};
