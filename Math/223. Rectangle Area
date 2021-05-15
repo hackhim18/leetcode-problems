@@ -1,0 +1,8 @@
+class Solution {
+public:
+    int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        int l = (E < C && G > A) ? min(C, G) - max(A,E) : 0;
+        int r = (F < D && H > B) ? min(D, H) - max(B,F) : 0;
+        return (C-A)*(D-B) - l*r + (G-E)*(H-F);
+    }
+};
