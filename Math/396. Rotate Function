@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int maxRotateFunction(vector<int>& a) {
+        long long int n=a.size();
+        if(!n)return n;
+        long long INF=1e18;
+        long long int pref[n];
+        memset(pref,0,sizeof(pref));
+        long long int sum=0;
+        long long int mf=n-1;
+        
+        pref[0]=mf*a[0];
+        sum+=a[0];
+        for(long long int i=1;i<n;i++)
+        {
+            pref[i]=pref[i-1]+mf*a[i]-sum;
+            sum+=a[i];
+        }
+        sum=0;
+        long long int suf[n];
+        memset(suf,0,sizeof(suf));
+        suf[n-1]=a[n-1];
+        for(long long int i=n-2;i>=0;i--)
+            suf[i]=suf[i+1]+a[i];
+        for(int i=0;i<n;i++)
+            sum+=a[i]*i;
+        suf[0]=sum;
+        for(long long int i=1;i<n;i++)
+            suf[i]=suf[i-1]-suf[i];
+        long long int ans=-INF;
+        for(long long int i=0;i<n;i++){
+            if(i==0)
+                ans=max(ans,suf[i]);
+            else
+                ans=max(ans,pref[i-1]+suf[i]);
+        }
+        return ans;
+    }
+}; 
