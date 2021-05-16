@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<vector<int>> findSolution(CustomFunction& customfunction, int z) {
+        int x = 1, y = 1000;
+        vector<vector<int>> result;
+        
+        // We do grid search, where the rows = x and col = y
+        for(; x <= 1000; x++) {
+            while(customfunction.f(x,y) > z && y >= 1)
+                --y;
+            if(y >= 1 && customfunction.f(x,y) == z)
+                result.emplace_back(vector<int>{x, y});
+        }
+        return result;
+    }
+};
