@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minOperations(vector<int>& nums) {
-        int cnt =  0 , n = nums.size();
+         int cnt =  0 ,  n = nums.size();
         
         while(1){
             int cnt_zero = 0 ; 
