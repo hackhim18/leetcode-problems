@@ -1,0 +1,23 @@
+ 
+
+class Solution {
+public:
+    int maximumUnits(vector<vector<int>>& a, int truckSize) {
+        sort(a.begin(),a.end(),comp);
+        
+        int i=0;
+        int ans=0;
+        
+        while(truckSize>0 && i<a.size()){
+            if(a[i][0]>0){
+                ans+=a[i][1];
+                truckSize--;
+                a[i][0]--;
+            }else{
+                i++;
+            }
+        }
+        
+        return ans;
+    }
+};
