@@ -1,0 +1,52 @@
+class Solution 
+{
+public:
+    TreeNode* recoverFromPreorder(string S) 
+    {
+        stack<TreeNode *>stk;
+        int i=0;
+        while(i<S.length())
+        {
+            int level=0;
+            while(i<S.length() && S[i]=='-')
+            {
+                level++;
+                i++;
+            }
+            if(i==S.length())
+            {
+                break;
+            }
+            int start=i;
+            while(i<S.length() && S[i]!='-')
+            {
+                i++;
+            }
+            int x=stoi(S.substr(start,i-start));
+            TreeNode *tmp=new TreeNode(x);
+            if(stk.empty())
+            {
+                stk.push(tmp);
+                continue;
+            }
+            while(stk.size()>level)
+            {
+                stk.pop();
+            }
+            if(stk.top()->left)
+            {
+                stk.top()->right=tmp;
+            }
+            else
+            {
+                stk.top()->left=tmp;
+            }
+            stk.push(tmp);
+        }
+        while(stk.size()!=1)
+        {
+            stk.pop();
+        }
+        return stk.top();
+    }
+};
