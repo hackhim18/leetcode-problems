@@ -1,0 +1,23 @@
+class Solution {
+public:
+vector<int> countBits(int num) {
+        vector<int> out; 
+        out.push_back(0);
+        if(!num) 
+            return out; 
+        int power=0; 
+        out.push_back(1); 
+        for(int i=2; i<=num; i++){
+		    
+            if(!(i&i-1)){
+                out.push_back(1);
+                power++;
+            }else{
+				 
+                out.push_back(out[pow(2,power)]+out[i-pow(2,power)]);
+            }
+        }
+        return out;
+}
+
+};
