@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int findNthDigit(int n) {
+        long long int noDigit=1,base=1;
+        while(n-noDigit*base*9ll>=0){
+            n-=noDigit*base*9;
+            noDigit++;
+            base*=10;
+        }
+        int no=base+(n%noDigit==0?n/noDigit-1:n/noDigit);
+        int idx=n%noDigit;
+        string res=to_string(no);
+        if(idx==0)return res[res.length()-1]-'0';
+        else return res[idx-1]-'0';
+    }
+};
