@@ -1,0 +1,33 @@
+class Solution {
+public:
+      string customSortString(string order, string str) {
+        string out="";//string to store output vector
+        
+        unordered_map<char,int>mp;//map to store count of values in str
+        for(auto val:str)
+        {
+            mp[val]++;
+        }
+        
+       
+        {
+            if(mp.find(val)!=mp.end())
+            {
+                while(mp[val]>0)
+                {
+                    out.push_back(val);
+                    mp[val]--;
+                }
+            }
+        }
+        for(auto &val:mp)
+        {
+            while(val.second>0)
+            {
+                out.push_back(val.first);
+                val.second--;
+            }
+        }
+        return out;
+	}
+};
