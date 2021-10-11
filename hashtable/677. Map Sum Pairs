@@ -1,0 +1,19 @@
+class MapSum {
+public:
+  
+  vector<pair<string,int>> v;
+    MapSum() { }
+	
+    void insert(string key, int val) {
+        bool f=1;
+        for(int i=0;i<v.size();i++)if(v[i].first==key){f=0;v[i].second=val;break;}
+        if(f)v.push_back({key,val});
+    }
+    
+    int sum(string prefix) {
+        int sum=0;
+        for(auto a:v)if(a.first[0]==prefix[0])
+            if(a.first.substr(0,prefix.length())==prefix)sum+=a.second;
+        return sum;
+    }
+};
