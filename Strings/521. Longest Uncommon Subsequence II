@@ -1,0 +1,36 @@
+class Solution {
+public:
+    
+    bool isSub(string a,string b){
+        
+        int i=0,j=0;
+        
+        while( i<a.size()&&j<b.size() ){
+            if(a[i]==b[j]){
+                i++;j++;
+            }
+            else{
+                i++;
+            }
+        }
+        return j==b.size();
+    }
+    
+  int findLUSlength(vector<string>& strs) {
+        int ans=-1;
+        int n=strs.size();
+        for(int i=0;i<n;i++){
+            bool flag=1;
+            for(int j=0;j<n;j++){
+                if(i!=j){
+                    if(isSub(strs[j],strs[i])){
+                        flag=0;
+                    }
+                }
+            }
+            int temp=strs[i].size();
+            if(flag) ans=max(ans,temp);
+        }
+        return ans;
+    }
+};
