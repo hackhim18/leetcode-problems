@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int maxNiceDivisors(int primeFactors) {
+        if (primeFactors <= 3) return primeFactors; 
+        int q = primeFactors/3, r = primeFactors%3, mod = 1'000'000'007; 
+        
+        auto mpow = [&](long x, int k) {
+            long ans = 1; 
+            for (; k; k /= 2) {
+                if (k&1) ans = (ans * x) % mod; 
+                x = (x * x) % mod; 
+            }
+            return ans; 
+        };
+        
+        if (r == 0) return mpow(3, q); 
+        if (r == 1) return mpow(3, q-1) * 4 % mod;
+        return mpow(3, q) * 2 % mod; 
+    }
+};
