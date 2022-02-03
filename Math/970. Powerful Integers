@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<int> powerfulIntegers(int x, int y, int bound) {
+        set<int> o;
+        int limx = (x!=1?floor(log(bound)/log(x)):0) + 1;
+        int limy = (y!=1?floor(log(bound)/log(y)):0) + 1;
+        for(int i=0; i<=limx; i++) {
+            for(int j=0; j<=limy; j++) {
+                int el = pow(x,i)+pow(y,j);
+                if(el<=bound) o.insert(el);
+            }
+        }
+        return vector<int>(o.begin(),o.end());
+    }
+};
