@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int ans = INT_MIN;
+    void dfs(vector<vector<int>>& grid , int row , int col , int& sum){
+        if(row<0 or row>=grid.size() or col<0 or grid[0].size()<=col or grid[row][col]==0){ 
+            return ;
+        }
+        int temp = grid[row][col];
+        sum+=temp;
+        ans = max(ans , sum);
+        grid[row][col]=0;   
+        dfs(grid ,row-1 , col ,sum);
+        dfs(grid ,row+1 , col ,sum);
+        dfs(grid ,row , col-1 ,sum);
+        dfs(grid ,row , col+1 ,sum);
+        grid[row][col]=temp; 
+        sum-=temp; // also removing the number of gold coin collected from that cell
+    }
+    
+    int getMaximumGold(vector<vector<int>>& grid) {
+        int n = grid.size();  
+        int m = grid[0].size();  
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                int sum =0;
+                dfs(grid , i, j , sum); 
+            }
+        }
+        return ans;
+    }
+};
