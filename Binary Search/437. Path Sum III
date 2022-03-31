@@ -1,0 +1,20 @@
+class Solution {
+ 
+    int pathsum(TreeNode* root, int sum) {
+        if(root == NULL)
+            return 0;
+        int res =0;
+        if(root->val == sum) res++;
+        res += pathsum(root->left, sum-root->val);
+        res += pathsum(root->right,sum-root->val);
+        return res;
+        }
+    public:
+    int pathSum(TreeNode* root,int sum){
+        if(root == NULL) return 0;
+        return pathSum(root->left,sum) + pathsum(root,sum)+
+            pathSum(root->right,sum);
+    }
+};
+
+    
