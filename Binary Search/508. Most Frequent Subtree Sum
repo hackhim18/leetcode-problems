@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int mx;
+    map<int,int>m; // map of how many times a particular sum occurs 
+    int dfs(TreeNode* root){
+        if(root==NULL)
+            return 0;
+        int total = dfs(root->left) + dfs(root->right) + root->val; //for only one node 
+        mx = max(mx, ++m[total]);
+        return total;
+    }
+    
+    vector<int> findFrequentTreeSum(TreeNode* root) {
+        dfs(root);
+        vector<int>ans; //final vector 
+        for(auto &i : m){
+            if(i.second == mx){ //map which stores frequency 
+                ans.push_back(i.first);
+            }
+        }
+        return ans;
+    }
+};
