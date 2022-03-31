@@ -1,0 +1,28 @@
+class Solution {
+public:
+    
+    pair<int,int> HouseRobber(TreeNode *root)
+    {
+        if(!root){
+            pair<int,int> res = make_pair(0,0);
+            return res;
+        }
+
+        pair<int,int> left_subproblem  = HouseRobber(root->left);
+        pair<int,int> right_subproblem = HouseRobber(root->right);
+
+        int include = root->val+left_subproblem.second+right_subproblem.second;
+        int exclude = max(left_subproblem.first,left_subproblem.second)+max(right_subproblem.first,right_subproblem.second);
+
+        pair<int,int> res = make_pair(include,exclude);
+
+        return res;
+    }
+    
+    int rob(TreeNode* root) {
+        
+        pair<int,int> res = HouseRobber(root);
+    
+        return max(res.first,res.second);
+    }
+};
