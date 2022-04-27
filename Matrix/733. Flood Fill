@@ -1,0 +1,43 @@
+class Solution
+{
+    void floodfill(vector<vector<int>> &image, int sr, int sc, int &newColor, int val, int &r, int &c, vector<vector<int>> &visited)
+    {
+        if (visited[sr][sc] == 1) return;
+        visited[sr][sc] = 1;
+        int prevval;
+        prevval = image[sr][sc];
+        if (image[sr][sc] == val)
+        {
+            image[sr][sc] = newColor;
+            if (sr > 0)
+            {
+                floodfill(image, sr - 1, sc, newColor, prevval, r, c, visited);
+            }
+
+            if (sr < (r - 1))
+            {
+                floodfill(image, sr + 1, sc, newColor, prevval, r, c, visited);
+            }
+
+            if (sc > 0)
+            {
+                floodfill(image, sr, sc - 1, newColor, prevval, r, c, visited);
+            }
+
+            if (sc < (c - 1))
+            {
+                floodfill(image, sr, sc + 1, newColor, prevval, r, c, visited);
+            }
+        }
+    }
+
+public:
+    vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int newColor)
+    {
+        int r = image.size();
+        int c = image[0].size();
+        vector<vector<int>> visited(r, vector<int>(c, 0));
+        floodfill(image, sr, sc, newColor, image[sr][sc], r, c, visited);
+        return image;
+    }
+};
